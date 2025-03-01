@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.43.0",
+    "axios": "^1.8.1",
+    "express": "^4.21.2"
+  },
+  "scripts": {
+    "start": "node server.js" 
+  }
+}

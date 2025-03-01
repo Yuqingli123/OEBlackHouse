@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生手机管理系统</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 权限验证区域 -->
+    <div class="auth-box">
+        <div id="loginBox">
+            <input type="password" id="password" placeholder="输入管理密码">
+            <button onclick="login()">验证</button>
+        </div>
+        <div id="adminPanel" style="display:none;">
+            <button onclick="showRecordForm(null)">+ 新增记录</button>
+            <button onclick="logout()">退出管理</button>
+        </div>
+    </div>
+    <br>   
+    <br>   
+    <!-- 公示看板 -->
+    <table id="dashboard">
+        <thead>
+            <tr>
+                <th>学生姓名</th>
+                <th>违规类型</th>
+                <th>入库时间</th>
+                <th>释放时间</th>
+                <th>剩余时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <!-- 违规记录表单 -->
+    <div id="recordForm">
+        <h3>违规记录管理</h3>
+        <div>
+            <label>学生姓名：</label>
+            <input type="text" id="studentName" required>
+        </div>
+        <div>
+            <label>违规类型：</label>
+            <select id="offenseType">
+                <option value="出勤">出勤</option>
+                <option value="作业">作业</option>
+                <option value="电子设备">电子设备</option>
+            </select>
+        </div>
+        <div>
+            <label>收缴时长：</label>
+            <div>
+                <input type="radio" id="duration24" name="duration" value="24" onchange="calcReleaseTime()" checked>
+                <label for="duration24">1天</label>
+                <input type="radio" id="duration48" name="duration" value="48" onchange="calcReleaseTime()">
+                <label for="duration48">2天</label>
+            </div>
+        </div>
+        <div>
+            <label>开始时间：</label>
+            <input type="datetime-local" id="startTime" onchange="calcReleaseTime()">
+        </div>
+        <div>
+            <label>释放时间：</label>
+            <input type="datetime-local" id="releaseTime" disabled>
+        </div>
+        <div>
+            <button onclick="addDuration(24)">+24小时</button>
+        </div>
+        <div style="margin-top:15px;">
+            <button onclick="saveRecord()">保存</button>
+            <button onclick="closeForm()">取消</button>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="records.js"></script>
+</body>
+</html>
